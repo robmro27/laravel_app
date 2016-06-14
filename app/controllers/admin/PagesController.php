@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Page;
+use App\Services\Validators\PageValidator;
 use Input, Redirect, Sentry, Str, Notification;
 
 /**
@@ -29,14 +30,21 @@ class PagesController extends \BaseController {
     
     public function store()
     {
-        $page = new Page;
-        $page->title = Input::get('title');
-        $page->slug = Str::slug(Input::get('title'));
-        $page->body = Input::get('body');
-        $page->user_id = Sentry::getUser()->id;
-        $page->save();
+        $validator = new PageValidator;
         
-        return Redirect::route('admin.pages.edit', $page->id);
+        if ($validator->passes()) 
+        {
+            $page = new Page;
+            $page->title = Input::get('title');
+            $page->slug = Str::slug(Input::get('title'));
+            $page->body = Input::get('body');
+            $page->user_id = Sentry::getUser()->id;
+            $page->save();
+
+            return Redirect::route('admin.pages.edit', $page->id);
+        }
+        
+        return Redirect::back()->withInput()->withErrors($validator->errors);
     }
     
     public function edit($id)
@@ -46,8 +54,8 @@ class PagesController extends \BaseController {
     
     public function update($id)
     {
-        //$validation = new PageValidator;
-        //if ( $validation->passes() ) {
+        $validation = new PageValidator;
+        if ( $validation->passes() ) {
         
             $page = Page::find($id);
             $page->title = Input::get('title');
@@ -60,16 +68,16 @@ class PagesController extends \BaseController {
             
             return Redirect::route('admin.pages.edit', $page->id);
             
-        //}
+        }
         
-        //return Redirect::back()->withInput()->withErrors($validation->errors);
+        return Redirect::back()->withInput()->withErrors($validation->errors);
         
     }
     
     public function destroy($id)
     {
         $page = Page::find($id);
-        $page->delete();
+        //$page->delete();
         
         return Redirect::route('admin.pages.index');
     }

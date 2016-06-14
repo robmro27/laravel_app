@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
                 'Cartalyst\Sentry\SentryServiceProvider',
                 'Krucas\Notification\NotificationServiceProvider',
+                'App\Site\SiteServiceProvider',
 
 	),
 
@@ -191,7 +192,11 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
                 'Sentry'            => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-                'Notification'      => 'Krucas\Notification\Facades\Notification'
+                'Notification'      => 'Krucas\Notification\Facades\Notification',
+                'Site'              => 'App\Site\SiteServiceProvider',
+            
+                'Article'         => 'App\Models\Article',
+                'Page'            => 'App\Models\Page',
 
 	),
 
