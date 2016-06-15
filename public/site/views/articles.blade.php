@@ -1,16 +1,23 @@
 @include('site::_partials/header')
 
-<h2>Articles</h2>
+<div class='container'>
+    <div class="blog-header">
+        <h1 class="blog-title">Articles</h1>
+        <p class="lead blog-description">Articles</p>
+    </div>
 
-
-<ul>
-    @foreach ( $entries as $entry )
-    <li>
-        <h3><a href="{{URL::route('article', $entry->slug)}}">{{ $entry->title }}</a></h3>
-        <h5>Created at {{ $entry->created_at }} &amp;bull; by {{ $entry->author->email }}</h5>
-        {{ Str::limit($entry->body, 100) }}
-    </li>
-    @endforeach
-</ul>
-
+    <div class="row">
+        <div class="col-sm-12 blog-main">
+            @foreach ( $entries as $entry )
+                <div class="blog-post">
+                    <h2 class="blog-post-title">{{ $entry->title }}</h2>
+                    <p class="blog-post-meta">Created at {{ $entry->created_at }} &amp;bull; by <a href="#">{{ $entry->author->email }}</a></p>
+                    <p>{{ Str::limit($entry->body, 100) }}</p>
+                    <a href="{{URL::route('article', $entry->slug)}}">More ...</a>
+                </div>
+            @endforeach
+        </div>
+    </div> 
+</div>    
+    
 @include('site::_partials/footer')

@@ -1,6 +1,8 @@
-            <footer>
-                <p>&amp;copy; 2016, Polcode</p>
+            <footer class="blog-footer">
+                <p>Polcode <a href="#"></a> by <a href="#">@robmro27</a></p>
+                <p>
+                  <a href="#">Back to top</a>
+                </p>
             </footer>
-        </div>
     </body>
 </html>

@@ -197,6 +197,7 @@ return array(
             
                 'Article'         => 'App\Models\Article',
                 'Page'            => 'App\Models\Page',
+                'Image'           => 'App\Facades\ImageFacade',
 
 	),
 

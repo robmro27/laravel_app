@@ -1,6 +1,9 @@
 @extends('admin._layouts.default')
 
 @section('main')
+
+<a href='{{ URL::route('admin.pages.create') }}' class='btn btn-success'>Add new</a>
+
 <table class='table table-stripped'>
     <thead>
         <tr>
@@ -19,7 +22,7 @@
             <td>
                 <a href='{{ URL::route('admin.pages.edit', $page->id) }}' class='btn btn-success btn-mini pull-left'>Edit</a>
                 {{ Form::open(array('route' => array('admin.pages.destroy', $page->id), 'method' => 'delete', 'data-confirm' => 'Are you sure ?')) }}
-                <button type='submit' href='{{ URL::route('admin.pages.destroy', $page->id) }}' class='btn btn-danger btn-mini'>Delete</button> 
+                &nbsp;<button type='submit' href='{{ URL::route('admin.pages.destroy', $page->id) }}' class='btn btn-danger btn-mini'>Delete</button> 
                 {{ Form::close() }}
             </td>
         </tr>

@@ -9,9 +9,18 @@ Route::get('blog', array('as' => 'article.list', function() {
 }));
 
 Route::get('blog/{slug}', array('as' => 'article', function($slug) {
-    return View::make('site::article')->with('entry', Article::where('slug', $slug)->first());
+    $article = Article::where('slug', $slug)->first();
+    if ( ! $article) App::abort(404, 'Page not found');
+    return View::make('site::article')->with('entry', $article);
 }));
 
 Route::get('{slug}',array('as' => 'page', function($slug) {
-    return View::make('site::page')->with('entry', Page::where('slug', $slug)->first());
+    $page = Page::where('slug', $slug)->first();
+    if ( ! $page) App::abort(404, 'Page not found');
+    return View::make('site::page')->with('entry', $page);
 }))->where('slug', '^((?!admin).)*$');
+
+App::missing(function($exception)
+{
+    return Response::view('site::404', array(), 404);
+});
