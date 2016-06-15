@@ -14,13 +14,6 @@
     </div>
 
     <div class='form-group'>
-        @if ($article->image)
-            <a href='{{$article->image}}'>
-                <img src='<?php echo (new \App\Services\Image())->resize($article->image, 200, 150) ?>' alt='image' />
-            </a>    
-        @else
-            No image
-        @endif
         
         {{ Form::file('image') }}
         

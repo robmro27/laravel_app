@@ -2,7 +2,7 @@
 
 @section('main')
 
-<a href='{{ URL::route('admin.pages.create') }}' class='btn btn-success'>Add new</a>
+<a href='{{ URL::route('admin.articles.create') }}' class='btn btn-success'>Add new</a>
 
 <table class='table table-stripped'>
     <thead>

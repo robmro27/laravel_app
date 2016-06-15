@@ -77,7 +77,7 @@ class PagesController extends \BaseController {
     public function destroy($id)
     {
         $page = Page::find($id);
-        //$page->delete();
+        $page->delete();
         
         return Redirect::route('admin.pages.index');
     }

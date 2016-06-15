@@ -88,7 +88,7 @@ class ArticlesController extends \BaseController {
     public function destroy($id)
     {
         $article = Article::find($id);
-        //$article->delete();
+        $article->delete();
         
         return Redirect::route('admin.articles.index');
     }
